@@ -1,0 +1,6 @@
+module.exports = {
+  MIN_NAME_SIZE: 2,
+  MAX_NAME_SIZE: 30,
+  MIN_PASSWORD_SIZE: 6,
+  MAX_PASSWORD_SIZE: 30
+};
