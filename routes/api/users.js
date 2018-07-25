@@ -43,7 +43,14 @@ router.post("/register", (req, res) => {
         newUser.password = hash;
         newUser
           .save()
-          .then(user => res.json(user))
+          .then(user =>
+            //TODO: test pick() function from lodash library
+            res.json({
+              id: user.name,
+              name: user.name,
+              email: user.email
+            })
+          )
           .catch(err => console.log(err));
       });
     });
