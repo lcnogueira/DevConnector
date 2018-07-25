@@ -4,6 +4,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
 
 //Load User model
 const User = require("../../models/User");
@@ -63,11 +64,12 @@ router.post("/login", (req, res) => {
 
     //Check password
     bcrypt.compare(password, user.password).then(isMatch => {
+      // if password matched
       if (isMatch) {
-        //User Matched
-        const payload = { id: user.id, name: user.name, avatar: user.avatar }; //Create JWT Payload
+        //Create JWT Payload
+        const payload = { id: user.id, name: user.name, avatar: user.avatar };
 
-        //Sign Token
+        //Sign Token e send it back
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -85,5 +87,20 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// @route   GET api/users/current
+// @desc    Return current user
+// @access  Private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 
 module.exports = router;
