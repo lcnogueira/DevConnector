@@ -37,6 +37,13 @@ router.get(
   }
 );
 
+// @route   GET api/profile/handle/:handle
+// @desc    Get profile by handle
+// @access  Public
+router.get("/handle/:handle", (req, res) => {
+  Profile.findOne({ handle: req.params.handle });
+});
+
 // @route   POST api/profile
 // @desc    Create or Edit user's profile
 // @access  Private
