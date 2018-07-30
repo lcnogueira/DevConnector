@@ -11,19 +11,19 @@ class Register extends Component {
       name: "",
       email: "",
       password: "",
-      password2: "",
-      errors: {}
+      password2: ""
+      // errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({ errors: this.props.errors });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.errors !== this.props.errors) {
+  //     this.setState({ errors: this.props.errors });
+  //   }
+  // }
 
   // componentWillReceiveProps(nextProps) {
   //   if (nextProps.errors) {
@@ -45,7 +45,9 @@ class Register extends Component {
   }
 
   render() {
-    const { errors, name, email, password, password2 } = this.state;
+    const { name, email, password, password2 } = this.state;
+
+    const { errors } = this.props;
 
     return (
       <div className="register">
