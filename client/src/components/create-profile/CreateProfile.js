@@ -57,7 +57,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    console.log("submit");
+    this.props.createProfile(profileData, this.props.history);
   }
 
   onChange(e) {
@@ -213,6 +213,7 @@ class CreateProfile extends Component {
                 />
                 <div className="mb-3">
                   <button
+                    type="button"
                     onClick={() =>
                       this.setState(prevState => ({
                         displaySocialInputs: !prevState.displaySocialInputs
@@ -246,4 +247,7 @@ CreateProfile.propTypes = {
 
 const mapStateToProps = ({ profile, errors }) => ({ profile, errors });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(CreateProfile);

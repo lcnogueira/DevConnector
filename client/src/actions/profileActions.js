@@ -15,7 +15,7 @@ export const getCurrentProfile = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_PROFILE,
-        profile: res.data
+        payload: res.data
       })
     )
     .catch(err =>
