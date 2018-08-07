@@ -16,8 +16,8 @@ export class AddEducation extends Component {
       from: "",
       to: "",
       current: false,
-      description: ""
-      // errors: {},
+      description: "",
+      errors: {}
       // disabled: false -> not necessary
     };
     this.onChange = this.onChange.bind(this);
@@ -30,6 +30,12 @@ export class AddEducation extends Component {
   //     this.setState({errors: nextProps.errors});
   //   }
   // }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.errors && this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
+    }
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -64,7 +70,7 @@ export class AddEducation extends Component {
   }
 
   render() {
-    const { errors } = this.props;
+    const { errors } = this.state;
 
     return (
       <div className="add-education">

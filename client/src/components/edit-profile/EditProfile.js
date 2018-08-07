@@ -26,8 +26,8 @@ class CreateProfile extends Component {
       facebook: "",
       linkedin: "",
       youtube: "",
-      instagram: ""
-      // errors: {}
+      instagram: "",
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -39,9 +39,9 @@ class CreateProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (nextProps.errors) {
-    //   this.setState({ errors: nextProps.errors });
-    // }
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
 
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
@@ -120,8 +120,7 @@ class CreateProfile extends Component {
   }
 
   render() {
-    const { errors } = this.props;
-    const { displaySocialInputs } = this.state;
+    const { errors, displaySocialInputs } = this.state;
 
     let socialInputs;
 

@@ -11,8 +11,8 @@ class Register extends Component {
       name: "",
       email: "",
       password: "",
-      password2: ""
-      // errors: {}
+      password2: "",
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -25,17 +25,11 @@ class Register extends Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.errors !== this.props.errors) {
-  //     this.setState({ errors: this.props.errors });
-  //   }
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.errors) {
-  //     this.setState({ errors: nextProps.errors });
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (this.props.errors && this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
+    }
+  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -51,9 +45,7 @@ class Register extends Component {
   }
 
   render() {
-    const { name, email, password, password2 } = this.state;
-
-    const { errors } = this.props;
+    const { name, email, password, password2, errors } = this.state;
 
     return (
       <div className="register">

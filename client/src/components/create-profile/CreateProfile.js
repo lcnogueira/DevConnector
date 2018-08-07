@@ -24,8 +24,8 @@ class CreateProfile extends Component {
       facebook: "",
       linkedin: "",
       youtube: "",
-      instagram: ""
-      // errors: {}
+      instagram: "",
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -37,6 +37,12 @@ class CreateProfile extends Component {
   //     this.setState({ errors: nextProps.errors });
   //   }
   // }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.errors && this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
+    }
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -65,8 +71,7 @@ class CreateProfile extends Component {
   }
 
   render() {
-    const { errors } = this.props;
-    const { displaySocialInputs } = this.state;
+    const { errors, displaySocialInputs } = this.state;
 
     let socialInputs;
 

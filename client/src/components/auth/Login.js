@@ -9,8 +9,8 @@ class Login extends Component {
     super();
     this.state = {
       email: "",
-      password: ""
-      // errors: {}
+      password: "",
+      errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
@@ -27,16 +27,10 @@ class Login extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
+    if (this.props.errors && this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
+    }
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.auth.isAuthenticated) {
-  //     this.props.history.push("/dashboard");
-  //   }
-  //   // if (nextProps.errors) {
-  //   //   this.setState({ errors: nextProps.errors });
-  //   // }
-  // }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -54,7 +48,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors } = this.props;
+    const { errors } = this.state;
 
     // if (auth.isAuthenticated) {
     //   history.push("/dashboard");
