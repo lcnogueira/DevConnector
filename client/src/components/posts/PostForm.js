@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import { addPost, getPosts } from "../../actions/postActions";
+import { addPost } from "../../actions/postActions";
 
 class PostForm extends Component {
   constructor(props) {
@@ -14,10 +14,6 @@ class PostForm extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.getPosts();
   }
 
   componentDidUpdate(prevProps) {
@@ -84,5 +80,5 @@ const mapStateToProps = ({ errors, auth }) => ({ errors, auth });
 
 export default connect(
   mapStateToProps,
-  { addPost, getPosts }
+  { addPost }
 )(PostForm);
