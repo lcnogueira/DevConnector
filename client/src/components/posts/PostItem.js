@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import { deletePost, addLike, removeLike } from "../../actions/postActions";
-import { timingSafeEqual } from "crypto";
 
 export class PostItem extends Component {
   onDeleteClick(id) {
