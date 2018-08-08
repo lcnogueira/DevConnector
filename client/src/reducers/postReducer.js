@@ -39,9 +39,9 @@ export default function(state = initialState, action) {
       return {
         ...state,
         post: action.payload,
-        posts: state.posts
-          .filter(post => post._id !== action.payload._id)
-          .concat([action.payload])
+        posts: state.posts.map(
+          post => (post._id !== action.payload._id ? post : action.payload)
+        )
       };
     default:
       return state;
